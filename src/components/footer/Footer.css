@@ -1,0 +1,93 @@
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px 48px 30px;
+    background-color: var(--primary);
+    align-items: center;
+}
+
+.footerInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: transparent;
+    font-size: medium;
+    gap: 10px;
+    background-color: none;
+}
+
+.dot {
+   font-size: 0.9em;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.247);
+}
+
+a {
+    color: black;
+}
+
+.footerContact{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: none;
+    gap: 20px;    
+}
+
+
+
+.infoLink:hover{
+    border-bottom: solid 1px;
+}
+
+.contactLink{
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.2s;
+    border-radius: 100%;
+    padding: 4px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactLink::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--darkhover);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contactLink:hover::before {
+  opacity: 1;
+}
+
+
+.footerIconLabel{
+    color: rgba(0, 0, 0, 0.247);
+}
+
+.mobileContactLink {
+    font-size: small;
+}
+
+
+@media only screen and (max-width: 768px){
+    .footerDesktop{
+        display: none;
+    }
+
+    .footer{
+        justify-content: center;
+    }
+
+    
+
+}
