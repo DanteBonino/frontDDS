@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom"
 import { DotSeparator } from "../DotSeparator/DotSeparator.js"
 import "./NavLinks.css"
 
-function esUltimoElemento(unIndice, unaLista){
+export function esUltimoElemento(unIndice, unaLista){
     return unIndice == (unaLista.length - 1)
 }
 

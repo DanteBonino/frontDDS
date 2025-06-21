@@ -62,7 +62,7 @@ const contactLinks = [
 ]
 
 const Footer = () => {
-    const isMobile = useIsMobile();
+    const isMobile = useIsMobile(1024);
     return (
         <footer className="footer">
             <section className="footerInfo footerDesktop">

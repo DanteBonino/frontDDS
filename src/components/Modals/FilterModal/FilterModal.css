@@ -1,0 +1,66 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.caracteristicasContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap:20px
+}
+
+.filterName {
+    font-size: large;
+    color: rgba(0, 0, 0, 0.856);
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.separador {
+  margin: 1rem 0rem;
+  border: none;
+  border-top: 1px solid #cccccc80;
+}
+
+.content{
+    display: flex;
+    background-color: none;
+}
+
+.rangoDePrecios {
+    justify-content: center;
+    flex-direction: column;
+}
+
+.caracteristicas {
+    
+}
+
+.rangeValueContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+    background-color: none;
+    margin-top: 19px;
+}
+
+.rangeInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    padding: 8px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.185);
+    width: 85px;
+    color: rgba(0, 0, 0, 0.747);
+    font-weight: bold;
+}
+
+.active{
+    border-color: black;
+}
