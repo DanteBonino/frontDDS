@@ -2,8 +2,11 @@ import { createPortal } from "react-dom"
 import CloseIcon from '@mui/icons-material/Close';
 import { useFilters } from "../../../contexts/filterContext/FilterContext";
 import "./BaseModal.css";
+import FilterSeccion from "./components/FilterSeccion";
+import { esUltimoElemento } from "../../footer/NavLinks";
+import { createCssClass } from "../../../utils/utils";
 
-const BaseModal = ({onClose, children, title=""}) => {
+const BaseModal = ({onClose, secciones, title="", modalExtraClass = "", filtros=[]}) => {
     const { aplicarFiltros, clearFilters } = useFilters();
 
     const modalRoot = document.getElementById("modal-root");
@@ -22,7 +25,7 @@ const BaseModal = ({onClose, children, title=""}) => {
     return (
         createPortal(
             <div className="modalOverlay show">
-                <div className="modal">
+                <div className={createCssClass("modal", modalExtraClass)}>
                     <div className="modalHeader">
                         <h2> {title} </h2>
                         <div>
@@ -33,11 +36,17 @@ const BaseModal = ({onClose, children, title=""}) => {
                     </div>
                     <div className="modalContent">
                         <div className="modalBody">
-                            {children}
+                        {
+                            secciones.map(({children, name, contentClass}, index) =>{
+                                return <FilterSeccion key={index} name={name} contentClass = {contentClass} esUltimoElemento={esUltimoElemento(index, secciones)}>
+                                    {children}
+                                </FilterSeccion>
+                            })
+                        }
                         </div>
                     </div>
                     <div className="modalFooter">
-                        <button className={"action borrar"} onClick={clearFilters}>
+                        <button className={"action borrar"} onClick={()=>{clearFilters(filtros)}}>
                             Borrar filtros
                         </button>
                         <button className={"action buscar"} onClick={handleBuscarClick}>

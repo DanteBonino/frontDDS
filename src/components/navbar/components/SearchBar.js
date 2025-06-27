@@ -1,5 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
-import "./Navbar.css"
+import "../Navbar.css"
 
 const SearchBar = ({displayClass = ""}) =>{
     return (

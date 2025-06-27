@@ -1,4 +1,4 @@
-import "../FilterModal.css"
+import "../../FilterModal/FilterModal.css"
 
 const FilterSeccion = ({clase = "", name, children, contentClass = "", esUltimoElemento=false}) => {
     return (

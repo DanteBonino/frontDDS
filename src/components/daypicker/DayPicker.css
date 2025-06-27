@@ -1,0 +1,22 @@
+.rdp-root {
+  --rdp-accent-color: var(--rojo);
+  --rdp-accent-background-color: var(--rojoSuave);
+  width: 100%;
+  background-color: none;
+  --rdp-weekday-padding: 5px 20px 0px 0px
+}
+
+.rdp-months{
+    min-width: 100%;
+    background-color: none;
+}
+
+.rdp-month{
+    background-color: none;
+    min-width: 100%;
+}
+
+.rdp-month_grid{
+    min-width: 100%;
+}
+

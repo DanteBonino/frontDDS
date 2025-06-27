@@ -7,9 +7,10 @@ import PetsIcon from '@mui/icons-material/Pets';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import { useFilters } from '../../../contexts/filterContext/FilterContext';
 import "./FilterModal.css"
-import FilterSeccion from './components/FilterSeccion';
+import FilterSeccion from '../BaseModal/components/FilterSeccion';
 import { esUltimoElemento } from '../../footer/NavLinks';
-import RangeValue from './components/RangeValue';
+import RangeValue from '../BaseModal/components/RangeValue';
+import BaseModal from '../BaseModal/BaseModal';
 
 
 
@@ -33,7 +34,7 @@ const caracteristicas = [
 ]
 
 
-const FilterModal = () => {
+const FilterModal = ({onClose}) => {
     const { filters, setFilters } = useFilters();
 
     const handleSliderChange = (e, newValue) => {
@@ -98,15 +99,13 @@ const FilterModal = () => {
 
 
     return(
-        <>
-            {
-                secciones.map(({children, name, contentClass}, index) =>{
-                    return <FilterSeccion key={index} name={name} contentClass = {contentClass} esUltimoElemento={esUltimoElemento(index, secciones)}>
-                        {children}
-                    </FilterSeccion>
-                })
-            }
-        </>
+          <BaseModal
+            onClose = {onClose}
+            title='Filtros'
+            secciones={secciones}
+            filtros={["min", "max", "caracteristicas"]}
+          >
+          </BaseModal>
     )
 }
 

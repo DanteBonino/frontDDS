@@ -16,6 +16,20 @@ class Filter {
   }
 }
 
+class HuespedesFilter extends Filter {
+  constructor(){
+    super("huespedes")
+  }
+
+  serializar(unValor){
+    return Number(unValor)
+  }
+
+  value(filtros){
+    return String(super.value(filtros))
+  }
+}
+
 class CaracteristicasFilter extends Filter {
   constructor(){
     super("caracteristicas")
@@ -33,7 +47,7 @@ class CaracteristicasFilter extends Filter {
 export const defaultValues = {
     fechaInicial: null, 
     fechaFinal: null,
-    huespedes: 1,
+    huespedes: 0,
     min: 0,
     max: 1000,
     caracteristicas: []
@@ -42,6 +56,7 @@ export const defaultValues = {
 export const filtersNames = Object.keys(defaultValues)
 
 export const filtersCommands = filtersNames
-    .filter(name => name !== "caracteristicas")
+    .filter(name => name !== "caracteristicas" && name !== "huespedes")
     .map(name => new Filter(name))
-    .concat(new CaracteristicasFilter);
+    .concat([new CaracteristicasFilter, new HuespedesFilter])
+/* Podría evitar tener que escribir distinto */

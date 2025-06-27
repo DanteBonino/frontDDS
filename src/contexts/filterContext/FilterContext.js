@@ -14,6 +14,11 @@ const obtenerFiltrosDesdeUrl = (searchParams) => {//TODO: revisar esto
     const value = searchParams.get(command.name);
     if (value !== null) {
       result[command.name] = command.serializar(value)
+      /*
+        Podría hacer que la fechaFinal sepa serialzarse según el valor de la fecha inicial y viceversa:
+          - Fecha inicial si no existe o si es igual a la fecha final, se serializa como fecha final - 1
+          - Fecha final si no existe (pero existe la inicial) o si es igual a la fecha inicial, se serializa como fecha inicial + 1
+      */
     }
   });
 
@@ -35,6 +40,7 @@ const obtenerFiltrosDesdeUrl = (searchParams) => {//TODO: revisar esto
 export const FilterProvider = ({ children }) => {
   
   const [filters, setFilters] = useState(defaultValues);
+  const [urlFilters, setUrlFilters] = useState(defaultValues)
 
 
   const navigate = useNavigate();
@@ -53,22 +59,34 @@ export const FilterProvider = ({ children }) => {
     });
   };
 
-  const clearFilters = () => {
-    setFilters(defaultValues);
+  const clearFilters = (relatedFilters = []) => {
+    const defaultedRelatedFilters = relatedFilters.reduce((defaultFilters, filterName) =>{
+      defaultFilters[filterName] = defaultValues[filterName];
+      return defaultFilters
+    }, {})
+    updateFilters(defaultedRelatedFilters);
   };
 
   const resetFiltersDesdeUrl = () => {
     const searchParams = new URLSearchParams(location.search);
     const nuevosFiltros = obtenerFiltrosDesdeUrl(searchParams);
     setFilters(nuevosFiltros);
+    setUrlFilters(nuevosFiltros);
   };
+
+  function updateFilters (cambios){
+    setFilters((prev) =>({
+      ...prev,
+      ...cambios
+    }))
+  }
 
   useEffect(() => {
     resetFiltersDesdeUrl();
   }, [location.search]);
 
   return (
-    <FilterContext.Provider value={{ filters, setFilters, aplicarFiltros, clearFilters, resetFiltersDesdeUrl }}>
+    <FilterContext.Provider value={{ filters, setFilters, aplicarFiltros, clearFilters, resetFiltersDesdeUrl, urlFilters, updateFilters }}>
       {children}
     </FilterContext.Provider>
   );
