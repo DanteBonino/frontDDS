@@ -1,0 +1,40 @@
+.alojamientoCardsContainer{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    gap:40px
+}
+
+.alojamientoLink {
+    background-color: none;
+    width: 25%;
+    min-width: 0;
+    max-width: 350px;
+}
+
+@media only screen and (max-width: 1024px){
+    .alojamientoCardsContainer{
+        padding-bottom: 150px;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1400px){
+  .alojamientoLink{
+    width: 30%;
+  }
+}
+
+@media only screen and (min-width: 764px) and (max-width: 1024px){
+    .alojamientoLink{
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 764px){
+    .alojamientoLink{
+        width: 100%;
+        max-width: 400px;
+    }
+}

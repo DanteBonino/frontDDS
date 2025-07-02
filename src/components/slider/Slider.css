@@ -1,0 +1,55 @@
+.slider-container {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border: 2px solid #999;
+  box-sizing: border-box;
+  overflow: hidden;
+  max-height: 250px;
+}
+
+.borderRadius20{
+  border-radius: 20px;
+}
+
+.slide-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.slider-container .swiper-button-prev,
+.slider-container .swiper-button-next {
+  color: #000; /* o el color que quieras para las flechas */
+}
+
+.slider-container .swiper-button-prev,
+.slider-container .swiper-button-next {
+  width: 44px;
+  height: 44px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slider-container .swiper-button-prev {
+  left: 10px;
+}
+
+.slider-container .swiper-button-next {
+  right: 10px;
+}
+
+@media only screen and (max-width: 764px){
+    .slider-container{
+        max-height: auto;    
+    }
+}

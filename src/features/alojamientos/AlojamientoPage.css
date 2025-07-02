@@ -1,0 +1,153 @@
+.page{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: none;
+    gap: 30px;
+}
+
+.placeAndOwnerInfo {
+ 
+}
+
+.placeAndOwnerInfo h4 {
+
+}
+
+.informacion {
+    padding-bottom: 26px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.11);
+    color: #222222;
+}
+
+.informacion h2 {
+    font-weight: bold;
+}
+
+.caracteristicas {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.caracteristicasContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+     max-width: fit-content;
+}
+
+.caracteristica {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.stickySection{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    position: relative;
+    background-color: none;
+}
+
+.nonStickyPart{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 3;
+    background-color: none;
+}
+
+.stickyElement{
+    flex: 2;
+    position: sticky;
+    top: 30px;
+    align-self: flex-start;
+    background-color: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.top-right {
+  border-top-right-radius: 16px;
+}
+.bottom-right {
+  border-bottom-right-radius: 16px;
+}
+
+.calendario {
+    background-color: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.resetDates{
+    margin: 20px 0px 24px;
+    align-self: flex-end;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    text-decoration: underline;
+    color: #0000008c;
+}
+
+.alojamientoImages {
+    display: none;
+}
+
+
+@media only screen and (max-width: 768px){
+    .caracteristicasContainer{
+        height: auto;
+    }
+
+    .page{
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        background-color: none;
+    }
+
+    .title{
+        text-align: center;
+        font-size: 26px;
+        text-wrap: wrap;
+    }
+
+    .placeAndOwnerInfo{
+        font-size: 14px;
+        color: #6c6c6c;
+        h2{
+          font-size: 14px;  
+        }
+    }
+}
+
+@media (max-width: 800px) {
+  .stickyElement {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    top: auto;
+    z-index: 999;
+    background-color: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.158);
+  }
+
+  .marginBottom20{
+    padding-bottom: 120px;
+  }
+
+  .placeAndOwnerInfo {
+    h4,h2{
+        text-align: center;
+    }  
+  }
+  
+  .alojamientoImages{
+    display: block;
+  }
+
+}

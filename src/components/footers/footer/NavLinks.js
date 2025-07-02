@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom"
-import { DotSeparator } from "../DotSeparator/DotSeparator.js"
+import { DotSeparator } from "../../DotSeparator/DotSeparator.js"
 import "./NavLinks.css"
 
 export function esUltimoElemento(unIndice, unaLista){

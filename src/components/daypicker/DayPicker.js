@@ -3,21 +3,21 @@ import 'react-day-picker/dist/style.css';
 import "./DayPicker.css"
 import { useFilters } from '../../contexts/filterContext/FilterContext';
 import { convertirAStringSiExiste, lasFechasSonIguales, nextDateFrom, setSelectedDate, showSelectedDate } from '../../utils/utils';
+import { useNavigate } from 'react-router-dom';
 
-const CustomDayPicker = () => {
+const CustomDayPicker = ({handleFiltersChange}) => {
     const { filters, setFilters } = useFilters();
     const today = new Date()
     const fechaInicial = filters.fechaInicial
-    
+    const navigate = useNavigate()
+
     function handleSetRange(unRango){
         if(unRango && lasFechasSonIguales(unRango.from, unRango.to)){
             unRango.to = nextDateFrom(unRango.from)
         }
-        setFilters((prev) =>({//Podría ser una abstracción "actualizar" porque siempre hago lo de prev ...
-            ...prev,
-            fechaInicial : setSelectedDate(unRango, "from"),
-            fechaFinal   : setSelectedDate(unRango, "to")
-        }))
+        const fechaInicial = setSelectedDate(unRango, "from")
+        const fechaFinal   = setSelectedDate(unRango, "to")
+        handleFiltersChange(fechaInicial, fechaFinal);
     }
 
     return (

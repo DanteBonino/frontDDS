@@ -1,6 +1,6 @@
 import { parseISO } from "date-fns";
-import { useFilters } from "../../../contexts/filterContext/FilterContext";
-import "../../iconedButton/IconedButton.css"
+import { useFilters } from "../../../../contexts/filterContext/FilterContext";
+import "../../../iconedButton/IconedButton.css"
 import SearchIcon from '@mui/icons-material/Search';
 
 function mostrarHuespedes(cantidad) {
@@ -9,7 +9,7 @@ function mostrarHuespedes(cantidad) {
   return `${cantidad} viajero${cantidad > 1 ? 's' : ''}`;
 }
 
-function mostrarTextoFechas(startStr, endStr){
+export function mostrarTextoFechas(startStr, endStr){
   if (!startStr && !endStr) return "Semana (en cualquier fecha)";
 
   const MONTHS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];

@@ -1,5 +1,5 @@
 import Slider from '@mui/material/Slider';
-import "../../navbar/Navbar.css"
+import "../../navbars/searchNavBar/Navbar.css"
 import IconedButton from '../../iconedButton/IconedButton';
 import WifiIcon from '@mui/icons-material/Wifi';
 import PoolIcon from '@mui/icons-material/Pool';
@@ -8,13 +8,13 @@ import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import { useFilters } from '../../../contexts/filterContext/FilterContext';
 import "./FilterModal.css"
 import FilterSeccion from '../BaseModal/components/FilterSeccion';
-import { esUltimoElemento } from '../../footer/NavLinks';
+import { esUltimoElemento } from '../../footers/footer/NavLinks';
 import RangeValue from '../BaseModal/components/RangeValue';
 import BaseModal from '../BaseModal/BaseModal';
 
 
 
-const caracteristicas = [
+export const caracteristicas = [
     {
         label: "Wifi",
         icon: <WifiIcon fontSize='small'/>

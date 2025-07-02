@@ -1,0 +1,38 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary);
+    width: 100%;
+    min-width: 0;
+    gap: 20px;
+    justify-content: flex-start ;
+    border-radius: 20px;
+    padding: 15px 15px 15px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+
+
+.cardInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cardInfo span,
+.cardInfo p,
+.cardInfo div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardInfo span,
+#location {
+    font-weight: bold;
+}
+
+.cardInfo span {
+    font-size: 16px;
+}
+

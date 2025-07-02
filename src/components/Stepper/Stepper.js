@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { cotaSuperiorDeViajeros, createCssClass } from "../../utils/utils"
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -13,7 +13,7 @@ const StepperButton = ({condicion, icono, onClick}) =>{
     )
 }
 
-const Stepper = () => {
+const Stepper = ({cotaInferior = 0, cotaSuperior = cotaSuperiorDeViajeros, cotaSuperiorEstricta = false}) => {
     const { filters, updateFilters } = useFilters()
     const cantidad = filters.huespedes
 
@@ -29,18 +29,22 @@ const Stepper = () => {
         updateFilters({huespedes: f(cantidad)})
     }
 
+    useEffect(()=>{
+        if(!cantidad || cantidad < cotaInferior) updateFilters({huespedes: cotaInferior})
+    },[])
+
     return(
         <div className="stepper">
-            <StepperButton condicion={cantidad == 0} onClick={decrementarCantidad} icono={<RemoveIcon fontSize="small"/>} />
+            <StepperButton condicion={cantidad <= cotaInferior} onClick={decrementarCantidad} icono={<RemoveIcon fontSize="small"/>} />
             <div className="stepperQuantity">
-                {cantidad}
+                {cantidad || cotaInferior}
                 {
-                    cantidad >= cotaSuperiorDeViajeros
+                    cantidad >= cotaSuperior && !cotaSuperiorEstricta
                         ? `+`
                         : ""
                 }
             </div>
-            <StepperButton condicion={cantidad == cotaSuperiorDeViajeros} onClick={incrementarCantidad} icono={<AddIcon fontSize="small"/>} />
+            <StepperButton condicion={cantidad == cotaSuperior} onClick={incrementarCantidad} icono={<AddIcon fontSize="small"/>} />
         </div>
     )
 }

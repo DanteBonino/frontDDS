@@ -3,7 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useFilters } from "../../../contexts/filterContext/FilterContext";
 import "./BaseModal.css";
 import FilterSeccion from "./components/FilterSeccion";
-import { esUltimoElemento } from "../../footer/NavLinks";
+import { esUltimoElemento } from "../../footers/footer/NavLinks";
 import { createCssClass } from "../../../utils/utils";
 
 const BaseModal = ({onClose, secciones, title="", modalExtraClass = "", filtros=[]}) => {

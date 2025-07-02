@@ -1,0 +1,12 @@
+.ownerCard{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    background-color: none;
+    gap: 12px;
+    align-items: center;
+}
+
+.ownerCard div {
+    font-weight: 600;
+}

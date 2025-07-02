@@ -1,5 +1,6 @@
 .navbar-bg{
-  padding: 8px 48px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   background-color: var(--primary);
 }
 
@@ -255,7 +256,7 @@
       display: none;
     }
 
-    #brand {
+    .vanishable {
       display: none;
     }
 

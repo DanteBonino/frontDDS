@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 30px 48px 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     background-color: var(--primary);
     align-items: center;
 }
@@ -78,18 +79,43 @@ a {
     font-size: small;
 }
 
+.contactLink.variable {
+    font-size: small;
+}
 
 
 
 @media only screen and (max-width: 1024px){
-    .footerDesktop{
+     
+    .footerInfo.variable{
         display: none;
     }
 
-    .footer{
+    .footer.variable{
         justify-content: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        justify-content: center;
+        z-index: 100000;
+        background-color: white;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px -1px 0px;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .footer.constant {
+        flex-direction: column-reverse;
+        gap: 10px;
     }
 
-    
+    .footerInfo{
+        flex-wrap: wrap;
+        font-size: 14px;
+    }
 
+    .dot{
+        display: none;
+    }
 }
