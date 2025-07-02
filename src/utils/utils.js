@@ -3,6 +3,8 @@ import WifiIcon from '@mui/icons-material/Wifi';
 import PoolIcon from '@mui/icons-material/Pool';
 import PetsIcon from '@mui/icons-material/Pets';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
+import { useFilters } from "../contexts/filterContext/FilterContext";
+import { defaultValues, filtersCommands, filtersNames } from "../contexts/filterContext/utils";
 
 export function emptyFn (){
     
@@ -97,3 +99,40 @@ export function cambiarEstadoA(id, reservas, estado){
 export function mockUsuarioDePrueba(){
     return mockApiResponse({ id: 4040}, "No se pudo crear el usuario")
 }
+
+
+function filtrosSonPorDefecto(filters, defaultValues) {
+  return filtersNames.every(name => {
+    const actual = filters[name];
+    const porDefecto = defaultValues[name];
+
+    if (Array.isArray(porDefecto)) {
+      if (!Array.isArray(actual) || actual.length !== porDefecto.length) return false;
+      return actual.every((v, i) => v === porDefecto[i]);
+    }
+
+    return actual === porDefecto;
+  });
+}
+
+export const fetchAlojamientos = async (filters) => {
+  let url;
+  if (filtrosSonPorDefecto(filters, defaultValues)) {
+    url = "http://localhost:3001/alojamientosAll";
+  } else {
+    const params = new URLSearchParams();
+    filtersCommands.forEach(command => command.setear(filters, params));
+    url = `http://localhost:3001/alojamientos?${params.toString()}`;
+  }
+
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Error en el servidor");
+    const data = await res.json();
+    return data
+    
+  } catch (err) {
+    console.error("Error al traer alojamientos:", err);
+  }
+};
+
