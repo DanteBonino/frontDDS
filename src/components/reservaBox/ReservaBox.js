@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useFilters } from "../../contexts/filterContext/FilterContext"
 import useScreenSize from "../../hooks/useWindowsSize"
-import { cantidadDeNochesComoStrings, createCssClass, rojo, showTextSegun } from "../../utils/utils"
+import { cantidadDeNochesComoStrings, createCssClass, mockCrearReserva, rojo, showTextSegun } from "../../utils/utils"
 import CompleteStepper from "../inputs/stepper/CompleteStepper"
 import { mostrarTextoFechas } from "../navbars/searchNavBar/components/MainSearchButton"
 import "./ReservaBox.css"
@@ -31,18 +31,6 @@ const ReservaBox = ({huespedes, precioPorNoche, isSmall = false}) => {
     const navigate = useNavigate()
 
     
-    function mockCrearReserva() {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                const exito = Math.random() > 0.5; // 50% de chances de éxito
-                if (exito) {
-                    resolve({ mensaje: "Reserva creada exitosamente" });
-                } else {
-                    reject(new Error("No se pudo crear la reserva. Intentalo nuevamente."));
-                }
-            }, 1500); // simulá un delay de 1.5s como si fuera el back
-        });
-    }
 
     
     function handleCrearReserva(e){

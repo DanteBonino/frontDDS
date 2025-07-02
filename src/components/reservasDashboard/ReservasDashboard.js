@@ -17,7 +17,7 @@ const ReservasDashboard = ({title, reservas, action, actionName, condicion}) =>{
                                     <p>Check-out: {reserva.checkOut}</p>
                                     <p>Estado: {reserva.estado}</p>
                                     <p>Total: ${reserva.total}</p>  
-                                    <button disabled={condicion(reserva.estado)} onClick={action}>{actionName}</button>
+                                    <button name={reserva.id} disabled={condicion(reserva.estado)} onClick={action}>{actionName}</button>
                                 </div>
                             </li>
                         ))

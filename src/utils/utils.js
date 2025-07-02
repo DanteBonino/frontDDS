@@ -71,3 +71,29 @@ export function showTextSegun(condicion, unTexto, otroTexto){
             : otroTexto
     )
 }
+
+export function mockApiResponse(response, errorMessage){
+    return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const exito = Math.random() > 0.5; // 50% de chances de éxito
+                if (exito) {
+                    resolve(response);
+                } else {
+                    reject(new Error(errorMessage));
+                }
+            }, 1500); // simulá un delay de 1.5s como si fuera el back
+    });
+}
+
+export function mockCrearReserva(){
+    return mockApiResponse({ mensaje: "Reserva creada exitosamente" }, "No se pudo crear la reserva. Intentalo nuevamente.")
+}
+
+export function cambiarEstadoA(id, reservas, estado){
+    const reservaActualizada = reservas.find(reserva => reserva.id == id)
+    return mockApiResponse({...reservaActualizada, estado}, `No se pudo cambiar a ${estado} la reserva`)
+}
+
+export function mockUsuarioDePrueba(){
+    return mockApiResponse({ id: 4040}, "No se pudo crear el usuario")
+}
