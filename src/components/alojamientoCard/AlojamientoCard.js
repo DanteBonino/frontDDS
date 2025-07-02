@@ -3,13 +3,13 @@ import "./AlojamientoCard.css"
 
 const AlojamientoCard = ({alojamiento}) => {
     const location = "Buenos Aires"
-    const { descripcion, precioPorNoche } = alojamiento
+    const { shortDescription, precioPorNoche } = alojamiento
     return(
         <div className="card">
             <Slider/>
             <section className="cardInfo">
                 <p id="location"> Departamento en {location} </p>
-                <p> {descripcion} </p>
+                <p> {shortDescription} </p>
                 <div> <span>$ {precioPorNoche} </span> por noche </div>
             </section>
         </div>
