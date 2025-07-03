@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { cotaSuperiorDeViajeros, createCssClass } from "../../utils/utils"
+import { cotaSuperiorDeViajeros, createCssClass, emptyFn } from "../../utils/utils"
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import "./Stepper.css"
@@ -13,7 +13,7 @@ const StepperButton = ({condicion, icono, onClick}) =>{
     )
 }
 
-const Stepper = ({cotaInferior = 0, cotaSuperior = cotaSuperiorDeViajeros, cotaSuperiorEstricta = false}) => {
+const Stepper = ({cotaInferior = 0, cotaSuperior = cotaSuperiorDeViajeros, cotaSuperiorEstricta = false, onQuantityChange = emptyFn}) => {
     const { filters, updateFilters } = useFilters()
     const cantidad = filters.huespedes
 
@@ -26,7 +26,9 @@ const Stepper = ({cotaInferior = 0, cotaSuperior = cotaSuperiorDeViajeros, cotaS
     }
 
     function modificarCantidad(f){
-        updateFilters({huespedes: f(cantidad)})
+        const nuevosHuespedes = {huespedes: f(cantidad)}
+        updateFilters(nuevosHuespedes)
+        onQuantityChange(nuevosHuespedes)
     }
 
     useEffect(()=>{

@@ -8,6 +8,9 @@
     height: 500px;
     background-color: white;
     box-shadow:rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    min-width: 500px;
+    display: flex;
+    flex-direction: column;
 }
 
 .modalContent{
@@ -19,7 +22,7 @@
     overflow-y: auto;
     min-height: 340px;
     max-height: 350px;
-
+    background-color: none;
 }
 
 .modalFooter{
@@ -103,16 +106,22 @@
 
   .modal {
     width: 100vw;
-  
+    height: 100vh;
     max-width: none;
     border-radius: 20px;
     margin: 0;
     margin-top: 20px;
+    min-width: auto;
   }
 
   .modalContent {
-    height: auto;
+    height: 72%;
     flex-grow: 1;
     overflow-y: auto;
+    max-height: 100vh;
+  }
+
+  .modalFooter{
+    padding-bottom: 20px;
   }
 }

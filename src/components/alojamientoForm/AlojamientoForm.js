@@ -1,18 +1,23 @@
 import { useState } from "react";
 import "./AlojamientoForm.css"; // Usaremos este archivo CSS
+import { useUsuario } from "../../contexts/usuarioContext/UsuarioContext";
+import ClearIcon from '@mui/icons-material/Clear';
+import { precioMinimoAceptable } from "../../utils/utils";
 
 export default function CrearAlojamientoForm() {
+  const precioMinimo = String(precioMinimoAceptable)
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
-  const [precio, setPrecio] = useState("");
-  const [maxHuespedes, setMaxHuespedes] = useState("");
+  const [precio, setPrecio] = useState(precioMinimo);
+  const [maxHuespedes, setMaxHuespedes] = useState("1");
   const [imagenes, setImagenes] = useState([""]);
   const [error, setError] = useState("");
+  const { usuario } = useUsuario();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!nombre.trim()) return setError("El nombre es obligatorio.");
-    if (descripcion.split(/\s+/).length > 500) return setError("La descripción no puede superar las 500 palabras.");
+    if (!descripcion || descripcion.split(/\s+/).length > 500) return setError("La descripción es obligatoria y no puede superar las 500 palabras.");
     if (imagenes.length < 5) return setError("Debes agregar al menos 5 imágenes.");
     setError("");
 
@@ -22,7 +27,7 @@ export default function CrearAlojamientoForm() {
       precio: Number(precio),
       maxHuespedes: Number(maxHuespedes),
       imagenes,
-      //agregar anfitrión
+      anfitrion: usuario.id
     };
 
     console.log("Alojamiento creado:", alojamiento);
@@ -59,7 +64,7 @@ export default function CrearAlojamientoForm() {
         <div className="inline-group">
           <div>
             <label>Precio por noche:</label>
-            <input type="number" min="0" value={precio} onChange={(e) => setPrecio(e.target.value)} placeholder="Precio" />
+            <input type="number" min={precioMinimo} value={precio} onChange={(e) => setPrecio(e.target.value)} placeholder="Precio" step={"1500"}/>
           </div>
           <div>
             <label>Máx. huéspedes:</label>
@@ -76,17 +81,21 @@ export default function CrearAlojamientoForm() {
               onChange={(e) => handleImagenChange(idx, e.target.value)}
               placeholder="https://picsum.photos/..."
             />
-            <button type="button" className="quitar-btn" onClick={() => quitarImagen(idx)}>Quitar</button>
+            <button type="button" className="quitar-btn" onClick={() => quitarImagen(idx)}>
+              <ClearIcon color="white" fontSize="small"/>
+            </button>
             {img && (
               <img src={img} alt={`Imagen ${idx + 1}`} className="preview" />
             )}
           </div>
         ))}
-        <button type="button" className="agregar-btn" onClick={agregarImagen}>
-          Agregar imagen
-        </button>
+        <div className="lastSection">
+          <button type="button" className="agregar-btn" disabled={imagenes.length > 4} onClick={agregarImagen}>
+            Agregar imagen
+          </button>
 
-        <button type="submit" className="submit-btn">Crear alojamiento</button>
+          <button type="submit" className="submit-btn">Crear alojamiento</button>
+        </div>
       </form>
     </div>
   );

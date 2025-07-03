@@ -95,3 +95,8 @@
   margin-bottom: 20px;
   text-align: center;
 }
+
+.lastSection {
+  display: flex;
+  justify-content: space-between;
+}

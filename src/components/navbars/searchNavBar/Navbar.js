@@ -12,19 +12,19 @@ import MainSearchButton from './components/MainSearchButton';
 import SearchModal from '../../Modals/SearchModal/SearchModal';
 import { createCssClass } from '../../../utils/utils';
 import BrandedNavbar from '../genericNavbar/genericNavbar';
+import { useModal } from '../../../contexts/modalContext/ModalContext';
 
 
 const SearchNavBar = () => {
   const { resetFiltersDesdeUrl } = useFilters();
-  const [showFilterModal, setShowFilterModal] = useState(false);
-  const [showSearchModal, setShowSearchModal]  = useState(false);
+  const {openModal, closeModal} = useModal();
 
   function handleOpenFilterModal () {
-    handleOpenModal(setShowFilterModal);
+    openModal(<FilterModal closeModal={closeModal}/>)
   }
 
   function handleOpenSearchModal(){
-    handleOpenModal(setShowSearchModal);
+    openModal(<SearchModal closeModal={closeModal}/>);
   }
 
   function handleOpenModal(someSetter){
@@ -40,15 +40,16 @@ const SearchNavBar = () => {
           <IconedButton onClick={handleOpenFilterModal} icon={<TuneIcon fontSize='small'/>} label={"Filtros"} clase='filtersDisplayer'/>
         </div>
       </BrandedNavbar>
-      {
+      {/*
         showFilterModal &&
           <FilterModal onClose={() => setShowFilterModal(false)}/>
+      */
       }
 
-      {
+      {/*
         showSearchModal && 
           <SearchModal onClose={() => setShowSearchModal(false)}/>
-      }
+      */}
     </>
   );
 };

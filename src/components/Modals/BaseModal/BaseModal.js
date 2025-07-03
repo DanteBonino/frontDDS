@@ -5,22 +5,41 @@ import "./BaseModal.css";
 import FilterSeccion from "./components/FilterSeccion";
 import { esUltimoElemento } from "../../footers/footer/NavLinks";
 import { createCssClass } from "../../../utils/utils";
+import { useEffect } from "react";
 
 const BaseModal = ({onClose, secciones, title="", modalExtraClass = "", filtros=[]}) => {
-    const { aplicarFiltros, clearFilters } = useFilters();
+    const { aplicarFiltros, clearFilters, resetFiltersDesdeUrl } = useFilters();
 
     const modalRoot = document.getElementById("modal-root");
+
+    
+
+    
+    function handleBuscarClick(){
+        aplicarFiltros();
+        onClose()
+    }
+
+    function handleCrossClose(){
+        onClose()
+        resetFiltersDesdeUrl()
+    }
+    
+
+    useEffect(() => {
+        // Al montar el modal: bloquear scroll
+        document.body.style.overflow = "hidden";
+
+        // Al desmontar el modal: restaurar scroll
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, []);
 
     if (!modalRoot) {
         console.error("modal-root no encontrado");
         return null;
     }
-
-    function handleBuscarClick(){
-        aplicarFiltros();
-        onClose()
-    }
-    
 
     return (
         createPortal(
@@ -29,7 +48,7 @@ const BaseModal = ({onClose, secciones, title="", modalExtraClass = "", filtros=
                     <div className="modalHeader">
                         <h2> {title} </h2>
                         <div>
-                            <button onClick={onClose}>
+                            <button onClick={handleCrossClose}>
                                 <CloseIcon/>
                             </button>
                         </div>

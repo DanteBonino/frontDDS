@@ -21,32 +21,27 @@ import useScreenSize from "../../hooks/useWindowsSize"
 import useIsMobile from "../../hooks/useIsMobile"
 import CompleteStepper from "../../components/inputs/stepper/CompleteStepper"
 import Slider from "../../components/slider/Slider"
+import { useLoader } from "../../contexts/loaderContext/LoaderContext"
+import useSetUrlParams from "../../hooks/useSetUrlParams"
 
 
 const Alojamiento = () => {
   const { id } = useParams();
   const [alojamiento, setAlojamiento] = useState(null);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading]=useState(true);
   const [error, setError] = useState(null);
   const { filters, clearFilters } = useFilters()
   const noches = cantidadDeNochesComoStrings(filters.fechaInicial, filters.fechaFinal)
   const navigate = useNavigate();
   const location = useLocation();
   const isMobile = useIsMobile(800);
+  const setParams = useSetUrlParams();
 
   function setDates(fechaInicial, fechaFinal){
     setParams({fechaInicial,fechaFinal})
   }
 
-  function setParams(unosParametros) {//TODO: refactor y capaz custom hook (?)
-    const params = new URLSearchParams(location.search);
-
-    Object.entries(unosParametros).forEach(([key, value]) => {
-      params.set(key, value);
-    });
-
-    navigate(`${location.pathname}?${params.toString()}`, { replace: true });
-  }
+  
 
   function deleteParams(unosParametros){
     const params = new URLSearchParams(location.search);
@@ -79,11 +74,14 @@ const Alojamiento = () => {
             "PISCINA",
             "MASCOTAS PERMITIDAS",
             "ESTACIONAMIENTO",
+            "WIFI",
+            "PISCINA",
+            "MASCOTAS PERMITIDAS",
+            "ESTACIONAMIENTO",
           ]
         });
       }, 2500); // 1 segundo de delay simulado
     });
-
     mockFetchAlojamiento
       .then((data) => {
         setAlojamiento(data);

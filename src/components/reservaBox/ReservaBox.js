@@ -9,6 +9,7 @@ import Loader from "../loader/Loader"
 import { ClipLoader } from "react-spinners"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
+import useSetUrlParams from "../../hooks/useSetUrlParams"
 
 export function estanElegidasLasFechas(filters){
     return filters.fechaInicial && filters.fechaFinal
@@ -24,13 +25,16 @@ function DateButton({label, fecha}){
 }
 
 const ReservaBox = ({huespedes, precioPorNoche, isSmall = false}) => {
-    const { filters } = useFilters()
+    const { filters } = useFilters();
     const noches = cantidadDeNochesComoStrings(filters.fechaInicial, filters.fechaFinal)
-    const { width } = useScreenSize()
-    const [fetching, setFetching] = useState(false)
-    const navigate = useNavigate()
+    const { width } = useScreenSize();
+    const [fetching, setFetching] = useState(false);
+    const navigate = useNavigate();
+    const setParams = useSetUrlParams();
 
-    
+    function setHuespedes(huespedes){
+        setParams(huespedes)
+    }
 
     
     function handleCrearReserva(e){
@@ -71,7 +75,7 @@ const ReservaBox = ({huespedes, precioPorNoche, isSmall = false}) => {
                     <DateButton label={"CHECK-OUT"} fecha={filters.fechaFinal}/>         
                 </div>
                 <div className="contentElement stepperContainer">
-                    <CompleteStepper cotaInferior={1} cotaSuperior={huespedes} cotaSuperiorEstricta={true}/>
+                    <CompleteStepper  cotaInferior={1} cotaSuperior={huespedes} cotaSuperiorEstricta={true} onQuantityChange={setHuespedes}/>
                 </div>
                 </div>
                 

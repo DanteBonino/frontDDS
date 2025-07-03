@@ -5,7 +5,7 @@
 }
 
 
-.caracteristicasContainer {
+.caracteristicasFiltersContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -36,9 +36,7 @@
     flex-direction: column;
 }
 
-.caracteristicas {
-    
-}
+
 
 .rangeValueContainer {
     display: flex;

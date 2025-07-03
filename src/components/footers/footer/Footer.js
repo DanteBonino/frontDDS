@@ -8,6 +8,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LabeledIcon from "../../labeledIcon/LabeledIcon";
 import { createCssClass } from "../../../utils/utils";
+import { useModal } from "../../../contexts/modalContext/ModalContext";
 
 
 class Link {
@@ -25,6 +26,10 @@ class LocalLink extends Link {
     link(){
         return `/${this.href}`
     }
+
+    target(){
+        return "_self"
+    }
 }
 
 class ExternalLink extends Link {
@@ -35,6 +40,10 @@ class ExternalLink extends Link {
     link(){
         return `https://${this.href}.com`
     }
+
+    target(){
+        return "_blank"
+    }
 }
 
 class SocialMediaLink extends ExternalLink {
@@ -43,7 +52,7 @@ class SocialMediaLink extends ExternalLink {
     }
 
     link(){
-        return super.link() + "/birbnb"
+        return super.link() + "/birbnb_arg      "
     }
 }
 
@@ -65,6 +74,7 @@ export const contactLinks = [
 
 const Footer = ({pageClassname = "", modeClass="", mobileLinks=[]}) => {
     const isMobile = useIsMobile(1024);
+    const {isOpen} = useModal();
 
     function createClassWithModeClass(...classes){
         return createCssClass(...classes, modeClass)
@@ -75,7 +85,7 @@ const Footer = ({pageClassname = "", modeClass="", mobileLinks=[]}) => {
     }
 
     return (
-        <footer className={createClassWithModeClass("footer", pageClassname)}>
+        <footer style={{display: isOpen && isVariable(modeClass) ? "none" : ""}} className={createClassWithModeClass("footer", pageClassname)}>
             <section className={createClassWithModeClass("footerInfo")}>
                 <p> © 2025 Birbnb, Inc. </p>
                 <DotSeparator/>   

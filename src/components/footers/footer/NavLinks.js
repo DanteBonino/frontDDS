@@ -11,7 +11,7 @@ function NavLinks ({links, doted=false, linkClassname = ""}) {
     
     return links.map((link, index) =>
             <>
-                <a className={`${linkClassname} ${pathname === link.link() ? "active-link" : ""}`} key={index} href={link.link()}>{link.content}</a>
+                <a className={`${linkClassname} ${pathname === link.link() ? "active-link" : ""}`} target={link.target()} key={index} href={link.link()}>{link.content}</a>
                 {
                     doted && !esUltimoElemento(index, links) &&
                      <DotSeparator/>   

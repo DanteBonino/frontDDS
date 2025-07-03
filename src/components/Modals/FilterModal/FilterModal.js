@@ -80,7 +80,7 @@ const FilterModal = ({onClose}) => {
         },
         {
             name:"Características",
-            children:  <div className='caracteristicasContainer'>
+            children:  <div className='caracteristicasFiltersContainer'>
                         {
                             caracteristicas.map(({icon, label}, index) =>
                                 <IconedButton

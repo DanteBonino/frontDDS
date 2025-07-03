@@ -9,18 +9,20 @@ import { useFilters } from "../../contexts/filterContext/FilterContext"
 import { fetchAlojamientos, rojo } from "../../utils/utils"
 import Loader from "../../components/loader/Loader"
 import { ClipLoader } from "react-spinners"
+import SuspenseWrapper from "../../components/suspense/suspenseWrapper/SuspenseWrapper"
+import { useLoader } from "../../contexts/loaderContext/LoaderContext"
+import SuspenseWrapperChildrenAsFunction from "../../components/suspense/suspenseWrapperChildrenAsFunction/SuspenseWrapperChildrenAsFunction"
 
 
 function HomePage (){
     const location = useLocation();
     const {filters} = useFilters();
     const [alojamientos, setAlojamientos] = useState([]);
-    const [loading, setLoading] = useState(true)
+    const {setLoading} = useLoader();
 
     useEffect(() => {
         async function traerAlojamientos() {
             const data = await fetchAlojamientos(filters);
-            console.log(data)
             setAlojamientos(data);
             setLoading(false);
         }
@@ -31,15 +33,13 @@ function HomePage (){
         <div id="root">
             <Navbar pageClassname={"homePage"}/>
             <main className="alojamientoCardsContainer homePage">
-                {
-                    loading &&
-                    <Loader loader={<ClipLoader color={rojo} size={20}/>}/>
-                }
-                {   
-                    !loading && mockAlojamientos?.map((unAlojamiento, index) => {
+                <SuspenseWrapper suspenseElement={<Loader loader={<ClipLoader color={rojo} size={20}/>} />}>
+                    {
+                        mockAlojamientos?.map((unAlojamiento, index) => {
                             return <Link className="alojamientoLink" to={`/alojamientos/${unAlojamiento.id}${location.search}`} key={index}><AlojamientoCard alojamiento={unAlojamiento} /></Link>
                         })
-                }
+                    }
+                </SuspenseWrapper>
             </main>
             <VariableFooter pageClassname={"homePage"}/>
         </div>

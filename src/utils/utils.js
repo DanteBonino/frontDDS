@@ -41,6 +41,7 @@ export function lasFechasSonIguales(fechaInicial, fechaFinal){
 }
 
 export const cotaSuperiorDeViajeros = 16
+export const precioMinimoAceptable  = 25000 
 
 export const rojo = "#ff2f68";
 
@@ -77,13 +78,13 @@ export function showTextSegun(condicion, unTexto, otroTexto){
 export function mockApiResponse(response, errorMessage){
     return new Promise((resolve, reject) => {
             setTimeout(() => {
-                const exito = Math.random() > 0.5; // 50% de chances de éxito
+                const exito = Math.random() > 0.5;
                 if (exito) {
                     resolve(response);
                 } else {
                     reject(new Error(errorMessage));
                 }
-            }, 1500); // simulá un delay de 1.5s como si fuera el back
+            }, 1500);
     });
 }
 
@@ -97,7 +98,7 @@ export function cambiarEstadoA(id, reservas, estado){
 }
 
 export function mockUsuarioDePrueba(){
-    return mockApiResponse({ id: 4040}, "No se pudo crear el usuario")
+    return mockApiResponse({ id: 4040, rol: Roles.HOST}, "No se pudo crear el usuario")
 }
 
 
@@ -136,3 +137,12 @@ export const fetchAlojamientos = async (filters) => {
   }
 };
 
+
+export const Roles = Object.freeze({
+  HOST: "HOST",
+  USER: "USER",
+});
+
+export function esUnObjetoVacio(unObjeto){
+    return !Object.keys(unObjeto).length>0
+}
