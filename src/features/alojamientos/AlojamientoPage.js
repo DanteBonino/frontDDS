@@ -95,8 +95,6 @@ const Alojamiento = () => {
       })
   }, [id]);
 
-
-
     return (
         <div id="root">
             <GoBackNavbar/>

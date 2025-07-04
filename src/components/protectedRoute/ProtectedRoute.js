@@ -1,13 +1,20 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useUsuario } from "../../contexts/usuarioContext/UsuarioContext";
-import { esUnObjetoVacio, Roles } from "../../utils/utils";
+import { esUnObjetoVacio, getCookie, Roles } from "../../utils/utils";
+import { useEffect } from "react";
+import SuspenseWrapper from "../suspense/suspenseWrapper/SuspenseWrapper";
 
 
 function ProtectedRoute({hostIsNotRequire = true }) {
-  const { usuario } = useUsuario();
-
+  const { usuario, loading } = useUsuario();
+  
   return (
-    !esUnObjetoVacio(usuario) && (hostIsNotRequire || usuario.rol == Roles.HOST)  ? <Outlet/> : <Navigate to='/'/>
+    <SuspenseWrapper loading={loading} suspenseElement={<></>}>
+        {
+            !esUnObjetoVacio(usuario) && (hostIsNotRequire || usuario.rol == Roles.HOST)  ? <Outlet/> : <Navigate to='/'/>
+        }
+    </SuspenseWrapper>
+    
   )
 }
 

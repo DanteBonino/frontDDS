@@ -5,6 +5,7 @@ import PetsIcon from '@mui/icons-material/Pets';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import { useFilters } from "../contexts/filterContext/FilterContext";
 import { defaultValues, filtersCommands, filtersNames } from "../contexts/filterContext/utils";
+import Cookies from "js-cookie";
 
 export function emptyFn (){
     
@@ -145,4 +146,9 @@ export const Roles = Object.freeze({
 
 export function esUnObjetoVacio(unObjeto){
     return !Object.keys(unObjeto).length>0
+}
+
+export function getCookie(nombre){
+    const cookie = Cookies.get(nombre)
+    return mapIfOrNullish(cookie, (cookie)=>JSON.parse(cookie))
 }

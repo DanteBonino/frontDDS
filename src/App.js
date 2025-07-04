@@ -33,9 +33,10 @@ function App() {
               />
               <Routes>
                 <Route index element={<HomePage/>}/>
-                <Route path="/alojamientos/:id" element={<Alojamiento />} />
+                
                 <Route element={<ProtectedRoute/>}>
                   <Route path="/usuarios/:id/mis-reservas" element={<MisReservas/>}/>
+                  <Route path="/alojamientos/:id" element={<Alojamiento />} />
                 </Route>
                 <Route element={<ProtectedRoute hostIsNotRequire={false}/>}>
                   <Route path="/alojamientos/crear" element={<CrearAlojamientoPage/>}/>
