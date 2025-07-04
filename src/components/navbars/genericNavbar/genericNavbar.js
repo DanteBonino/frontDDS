@@ -1,10 +1,12 @@
 import { ClipLoader } from "react-spinners";
 import { useUsuario } from "../../../contexts/usuarioContext/UsuarioContext"
-import { createCssClass, Roles } from "../../../utils/utils"
+import { createCssClass, rojo, Roles } from "../../../utils/utils"
 import Loader from "../../loader/Loader";
 import SuspenseWrapper from "../../suspense/suspenseWrapper/SuspenseWrapper";
 import "../searchNavBar/Navbar.css"
 import { useState } from "react";
+import ResponsiveDropdownButton from "../../dropDownDrawerButton/DropDownDrawerButton";
+
 
 const BrandedNavbar = ({children, pageClassname=""}) =>{
     const { usuario, usuarioDePrueba } = useUsuario();
@@ -29,6 +31,7 @@ const BrandedNavbar = ({children, pageClassname=""}) =>{
                             <span>Log in</span>
                         </SuspenseWrapper>
                     </button>
+                    
                 </nav>
             </header>
         </>
